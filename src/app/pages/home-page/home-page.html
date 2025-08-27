@@ -74,7 +74,7 @@
         @for (item of formList; track $index) {
         <div class="flex items-center justify-between">
           <span>{{ item.shoePartName }}</span>
-          <span>{{color()?.[item.stateName] !== 'white' ? itemCustomPrice : 0 | jaCurrency}}</span>
+          <span>{{(color()?.[item.stateName] !== 'white' ? itemCustomPrice : 0) | jaCurrency}}</span>
         </div>
         }
         <hr />

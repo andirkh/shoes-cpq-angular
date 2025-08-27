@@ -16,7 +16,3 @@
 
   background-size: 28px 28px;
 }
-
-.dot {
-  @apply w-2 h-2 rounded-full;
-} 
