@@ -1,0 +1,100 @@
+<div class="flex flex-col gap-4">
+  <!-- <div class="flex items-center justify-between">
+    <div class="flex flex-col gap-1">
+      <span class="font-semibold">Configurator</span>
+    </div>
+    <span class="text-semibold">Price/Quote</span>
+  </div> -->
+
+  <div class="flex gap-4 h-[85vh]">
+    <div class="card card-prototype">
+      <div class="w-full flex flex-col gap-4">
+        <b>visualization:</b>
+        <app-shoes-side />
+        <hr />
+        <app-shoes-back />
+        <hr />
+        <app-shoes-bottom />
+      </div>
+    </div>
+
+    <div class="card bg-white">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <b>configuration:</b>
+          <button
+            class="bg-blue-500 text-white rounded px-4 py-2 cursor-pointer"
+            (click)="showQuotation()"
+          >
+            get quotation
+          </button>
+        </div>
+
+        @for (item of formList; track $index) {
+        <div class="w-full flex flex-col gap-3">
+          <div class="card">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span>{{ item.shoePartName }}</span>
+                @if (color()?.[item.stateName] !== 'white') {
+                <div class="border-2 p-1 border-solid border-green-500 rounded-full w-4 h-4"></div>
+                }
+              </div>
+              <hr />
+              @for (check of item.colors; track $index) {
+              <div class="flex gap-2 items-center">
+                <input
+                  type="radio"
+                  [name]="item.stateName"
+                  [value]="check.value"
+                  [checked]="check.value === color()?.[item.stateName]"
+                  (change)="onColorChange($event)"
+                />
+                <span>{{ check.label }}</span>
+                <div class="dot" [ngStyle]="{ background: check.value }"></div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if(isShowQuotation()) {
+    <div class="card bg-yellow-50">
+      <div class="flex flex-col gap-2">
+        <span class="font-bold">Quotation</span>
+        <div class="flex items-center justify-between">
+          <span>Base Price</span>
+          <span>{{ itemBasePrice | jaCurrency }}</span>
+        </div>
+        <hr />
+        <div><span class="font-semibold">custom items :</span></div>
+        @for (item of formList; track $index) {
+        <div class="flex items-center justify-between">
+          <span>{{ item.shoePartName }}</span>
+          <span>{{color()?.[item.stateName] !== 'white' ? itemCustomPrice : 0 | jaCurrency}}</span>
+        </div>
+        }
+        <hr />
+        <div class="flex items-center justify-between">
+          <span>Total:</span>
+          <span>{{ totalPrice() | jaCurrency }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span>Discount ({{ discount }})</span>
+          <span>- {{ discountPrice() | jaCurrency }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span>Final Price</span>
+          <span class="bg-green-200 px-1">
+            {{ finalPrice() | jaCurrency }}
+          </span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  <div class="text-center">custom item count {{ remainingItem() }} / {{ itemCount }}</div>
+</div>

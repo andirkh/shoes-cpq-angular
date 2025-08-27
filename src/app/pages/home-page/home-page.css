@@ -1,0 +1,22 @@
+@reference "tailwindcss/theme.css";
+
+.card {
+  @apply flex-1 h-full overflow-hidden overflow-y-scroll;
+  @apply p-4 rounded-xl border-2 border-solid border-blue-500;
+  @apply transition-all duration-500;
+  scrollbar-width: none;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+.card-prototype {
+  background-image: radial-gradient(circle, rgb(215, 215, 215), rgb(215, 215, 215) 1px, rgb(255, 255, 255) 1px, rgb(255, 255, 255)) !important;
+
+  background-size: 28px 28px;
+}
+
+.dot {
+  @apply w-2 h-2 rounded-full;
+} 

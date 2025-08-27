@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+body {
+  @apply bg-slate-50 text-blue-700;
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+a {
+  @apply font-semibold underline;
+}
+
+hr {
+  @apply border-t-2 border-blue-500;
+}
